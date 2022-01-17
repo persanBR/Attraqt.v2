@@ -4,7 +4,7 @@
 provider "aws" {
   region     = "us-east-1"
   #access_key = ""
-  #secret_key = "lE+tyygfqcr377ehIj+58CeX0RcN1Ik4G4ociDBQ"
+  #secret_key = ""
 }
 
 
@@ -16,4 +16,5 @@ module "Network" {
 module "Orchestration" {
   source  = "./Orchestration"
   vpc_id = module.Network.asp_vpc_id
+  asp_public_subnet_a = module.Network.asp_public_subnet_a
 }

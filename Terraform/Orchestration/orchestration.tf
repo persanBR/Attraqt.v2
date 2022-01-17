@@ -85,6 +85,7 @@ EOF
 resource "aws_opsworks_stack" "main" {
   name                         = "ASP-terraform"
   vpc_id                       = var.vpc_id
+  default_subnet_id            = var.asp_public_subnet_a
   region                       = "us-east-1"
   service_role_arn             =  aws_iam_role.opswork_service_role.arn
   default_instance_profile_arn = aws_iam_instance_profile.opswork_instance_profile.arn
