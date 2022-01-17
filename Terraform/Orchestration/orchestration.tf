@@ -6,7 +6,7 @@ resource "aws_iam_policy" "policy" {
 
   policy = <<EOF
 {
-    "Version": "2008-10-17",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Action": [
@@ -55,4 +55,41 @@ EOF
 resource "aws_iam_role_policy_attachment" "opswork_service_role_policy_attach" {
    role       = "${aws_iam_role.opswork_service_role.name}"
    policy_arn = "${aws_iam_policy.policy.arn}"
+}
+
+resource "aws_iam_instance_profile" "opswork_instance_profile" {
+  name = "opswork_instance_profile"
+  role = "${aws_iam_role.opswork_instance_role.name}"
+}
+
+resource "aws_iam_role" "opswork_instance_role" {
+  name = "opswork_instance_role"
+  assume_role_policy = <<EOF
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "StsAssumeRole",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+EOF
+}
+
+
+resource "aws_opsworks_stack" "main" {
+  name                         = "ASP-terraform"
+  vpc_id                       = var.vpc_id
+  region                       = "us-east-1"
+  service_role_arn             =  aws_iam_role.opswork_service_role.arn
+  default_instance_profile_arn = aws_iam_instance_profile.opswork_instance_profile.arn
+
+  tags = {
+    Name = "ASP-terraform"
+  }
 }
