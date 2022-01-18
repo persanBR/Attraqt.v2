@@ -1,0 +1,9 @@
+variable "vpc_id" {type = string}
+variable "asp_public_subnet_a" {type = string}
+variable "asp_public_subnet_b" {type = string}
+variable "asp_private_subnet_a" {type = string}
+variable "asp_private_subnet_b" {type = string}
+variable "region" {type = string}
+variable "instances_state" {default = "stopped"}
+variable "db_username" {sensitive = true }
+variable "db_password" {sensitive = true }

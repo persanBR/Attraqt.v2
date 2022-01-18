@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_subnet" "private_subnet_a" {
   vpc_id     = aws_vpc.asp_main_vpc.id
   cidr_block = "192.168.0.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.region}a"
   tags = {
     Name = "private_subnet"
   }
@@ -30,7 +30,7 @@ resource "aws_subnet" "private_subnet_a" {
 resource "aws_subnet" "public_subnet_a" {
   vpc_id     = aws_vpc.asp_main_vpc.id
   cidr_block = "192.168.1.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "${var.region}a"
   tags = {
     Name = "public_subnet"
   }
@@ -39,7 +39,7 @@ resource "aws_subnet" "public_subnet_a" {
 resource "aws_subnet" "private_subnet_b" {
   vpc_id     = aws_vpc.asp_main_vpc.id
   cidr_block = "192.168.3.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "${var.region}b"
   tags = {
     Name = "private_subnet"
   }
@@ -48,7 +48,7 @@ resource "aws_subnet" "private_subnet_b" {
 resource "aws_subnet" "public_subnet_b" {
   vpc_id     = aws_vpc.asp_main_vpc.id
   cidr_block = "192.168.4.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "${var.region}b"
   tags = {
     Name = "public_subnet"
   }

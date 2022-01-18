@@ -5,4 +5,12 @@ output "asp_vpc_id" {
 output "asp_public_subnet_a" {
   value = aws_subnet.public_subnet_a.id
 }
-
+output "asp_public_subnet_b" {
+  value = aws_subnet.public_subnet_b.id
+}
+output "asp_private_subnet_a" {
+  value = aws_subnet.private_subnet_a.id
+}
+output "asp_private_subnet_b" {
+  value = aws_subnet.private_subnet_b.id
+}
