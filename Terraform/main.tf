@@ -24,7 +24,8 @@ module "Orchestration" {
   asp_public_subnet_b = module.Network.asp_public_subnet_b
   asp_private_subnet_a = module.Network.asp_private_subnet_a
   asp_private_subnet_b = module.Network.asp_private_subnet_b
-  instances_state = "stopped"
+  instances_state = "running"
+  //instances_state = "stopped"
   region = "us-east-1"
   db_username = var.db_username
   db_password = var.db_password

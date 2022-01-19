@@ -73,3 +73,24 @@ resource "aws_route_table" "asp_private_route" {
     Name = "asp_private_route"
   }
 }
+
+
+resource "aws_route_table_association" "private-a" {
+  subnet_id      = aws_subnet.private_subnet_a.id
+  route_table_id = aws_route_table.asp_private_route.id
+}
+
+resource "aws_route_table_association" "public-a" {
+  subnet_id      = aws_subnet.public_subnet_a.id
+  route_table_id = aws_route_table.asp_public_route.id
+}
+
+resource "aws_route_table_association" "private-b" {
+  subnet_id      = aws_subnet.private_subnet_b.id
+  route_table_id = aws_route_table.asp_private_route.id
+}
+
+resource "aws_route_table_association" "public-b" {
+  subnet_id      = aws_subnet.public_subnet_b.id
+  route_table_id = aws_route_table.asp_public_route.id
+}

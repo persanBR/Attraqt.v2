@@ -12,7 +12,6 @@ resource "aws_db_instance" "mysql_db" {
   db_subnet_group_name = aws_db_subnet_group.db-default.name
 }
 
-
 resource "aws_db_subnet_group" "db-default" {
   name       = "db-default-subnetgroup"
   subnet_ids = [var.asp_private_subnet_a, var.asp_private_subnet_b]
