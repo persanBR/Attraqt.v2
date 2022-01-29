@@ -13,3 +13,6 @@ output "asp_private_subnet_a" {
 output "asp_private_subnet_b" {
   value = aws_subnet.private_subnet_b.id
 }
+output "db_security_group_id" {
+    value = aws_security_group.db_sg.id
+} 

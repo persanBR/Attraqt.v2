@@ -1,18 +1,3 @@
-##PS.: The best way to use would be create custom layers for Backend and Frontend
-resource "aws_opsworks_custom_layer" "asp_custom_fe_app" {
-  stack_id = aws_opsworks_stack.main.id
-  short_name = "weblayer"
-  name = "Web Application Layer"
-  auto_assign_elastic_ips = true
-}
-
-resource "aws_opsworks_custom_layer" "asp_custom_be_app" {
-  stack_id = aws_opsworks_stack.main.id
-  short_name = "apilayer"
-  name = "API Application Layer"
-  auto_assign_elastic_ips = false
-}
-
 ##PS.:There should be a load ballancer
 ##PS.:Instance type is pv, dont want to manage disks now, change latter.
 resource "aws_opsworks_instance" "web-instance" {
@@ -52,7 +37,7 @@ resource "aws_opsworks_instance" "api-instance" {
 
 resource "aws_opsworks_rds_db_instance" "my_db_instance" {
   stack_id            = aws_opsworks_stack.main.id
-  rds_db_instance_arn = aws_db_instance.mysql_db.arn
+  rds_db_instance_arn = aws_db_instance.postgres_db.arn
   db_user             = var.db_username
   db_password         = var.db_password
 }

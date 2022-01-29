@@ -8,3 +8,4 @@ variable "instances_state" {default = "stopped"}
 variable "db_username" {sensitive = true }
 variable "db_password" {sensitive = true }
 variable "ssh_key_name" {type = string}
+variable "db_security_group_id" {type = string}

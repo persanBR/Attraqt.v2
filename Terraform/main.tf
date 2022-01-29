@@ -11,6 +11,7 @@ provider "aws" {
 module "Network" {
   source  = "./Network"
   region = var.region
+  cidr_block = "192.168.0.0/16"
 }
 
 module "Application" {
@@ -20,6 +21,7 @@ module "Application" {
   asp_public_subnet_b = module.Network.asp_public_subnet_b
   asp_private_subnet_a = module.Network.asp_private_subnet_a
   asp_private_subnet_b = module.Network.asp_private_subnet_b
+  db_security_group_id =  module.Network.db_security_group_id
   instances_state = "running"
   //instances_state = "stopped"
   region = var.region
