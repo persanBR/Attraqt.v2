@@ -63,5 +63,9 @@ resource "aws_opsworks_stack" "main" {
   region                       = "${var.region}"
   service_role_arn             =  aws_iam_role.opswork_service_role.arn
   default_instance_profile_arn = aws_iam_instance_profile.opswork_instance_profile.arn
+  depends_on = [
+    aws_iam_role.opswork_instance_role,
+    aws_iam_instance_profile.opswork_instance_profile,
+  ]
 }
 
