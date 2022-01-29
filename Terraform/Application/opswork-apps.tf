@@ -17,7 +17,7 @@ resource "aws_opsworks_application" "api-app" {
     url      = "https://github.com/persanBR/node-3tier-app.git"
   }
 
-  //should be true or do a ssloffload somewhere else
+  ##PS.: should be true or do a ssloffload somewhere else
   enable_ssl = false
 
 }

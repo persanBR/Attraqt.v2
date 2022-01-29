@@ -13,7 +13,7 @@ module "Network" {
   region = var.region
 }
 
-module "Orchestration" {
+module "Application" {
   source  = "./Application"
   vpc_id = module.Network.asp_vpc_id
   asp_public_subnet_a = module.Network.asp_public_subnet_a
@@ -25,4 +25,5 @@ module "Orchestration" {
   region = var.region
   db_username = var.db_username
   db_password = var.db_password
+  ssh_key_name = "ASP" //PS.: This could be created on terraform, for security issues I won't handle this now.
 }

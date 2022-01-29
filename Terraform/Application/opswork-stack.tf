@@ -22,14 +22,11 @@ EOF
 }
 
 resource "aws_iam_role_policy_attachment" "opswork_service_role_policy_attach" {
-   role       = "${aws_iam_role.opswork_service_role.name}"
-   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
-
-
-resource "aws_iam_instance_profile" "opswork_instance_profile" {
-  name = "opswork_instance_profile"
-  role = "${aws_iam_role.opswork_instance_role.name}"
+  role       = "${aws_iam_role.opswork_service_role.name}"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  depends_on = [
+    aws_iam_role.opswork_instance_role,
+  ]
 }
 
 resource "aws_iam_role" "opswork_instance_role" {
@@ -51,9 +48,16 @@ resource "aws_iam_role" "opswork_instance_role" {
 EOF
 }
 
+resource "aws_iam_instance_profile" "opswork_instance_profile" {
+  name = "opswork_instance_profile"
+  role = "${aws_iam_role.opswork_instance_role.name}"
+}
 resource "aws_iam_role_policy_attachment" "instance_profile_attach" {
   role       = aws_iam_role.opswork_instance_role.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  depends_on = [ //Trying to handle destruction mode
+    aws_iam_instance_profile.opswork_instance_profile,
+  ]
 }
 
 resource "aws_opsworks_stack" "main" {
@@ -63,9 +67,10 @@ resource "aws_opsworks_stack" "main" {
   region                       = "${var.region}"
   service_role_arn             =  aws_iam_role.opswork_service_role.arn
   default_instance_profile_arn = aws_iam_instance_profile.opswork_instance_profile.arn
-  depends_on = [
-    aws_iam_role.opswork_instance_role,
-    aws_iam_instance_profile.opswork_instance_profile,
-  ]
+  use_custom_cookbooks = true
+  custom_cookbooks_source {
+    type = "git"
+    url = "https://github.com/aws/opsworks-cookbooks/"
+  }
 }
 
