@@ -1,5 +1,5 @@
 //Internal modules <> external modules
-variable "region" {default = "us-east-1"}
+variable "region" {default = "eu-west-1"}
 variable "db_username" {sensitive = true }
 variable "db_password" {sensitive = true }
 //Not advised, security reasons 
