@@ -8,10 +8,10 @@ We believe in minimal effort for maximum result, so smart usage of existing solu
 Our stack is Terraform, Kubernetes, Helm, Docker, OpsWorks, ELK, Jenkins, but experience with or usage of other tools/technologies is always welcome
 Please fork this repository for application code: https://github.com/gbulanov/node-3tier-app/
 ```
- *Provided along with the instructions:*
-  1. aws account console login URL
-  2. aws credentials with admin access
-  3. slack chanel ID for communications
+ **Provided along with the instructions:**
+  1. *aws account console login URL*
+  2. *aws credentials with admin access*
+  3. *slack chanel ID for communications*
 
 ### **Details**
   + Infrastructure deployment (total 40 points)

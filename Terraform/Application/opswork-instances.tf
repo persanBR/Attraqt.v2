@@ -1,14 +1,14 @@
+##PS.: The best way to use would be create custom layers for Backend and Frontend
+
 resource "aws_opsworks_nodejs_app_layer" "asp_app" {
   stack_id = aws_opsworks_stack.main.id
   nodejs_version = "0.12.18"
   name = "Frontend App Server"
   auto_assign_elastic_ips = true
 }
-  
 
-
-//there should be a load ballancer
-//instance type is pv, dont want to manage disks
+##PS.:There should be a load ballancer
+##PS.:Instance type is pv, dont want to manage disks
 resource "aws_opsworks_instance" "web-instance" {
   stack_id = aws_opsworks_stack.main.id
 
