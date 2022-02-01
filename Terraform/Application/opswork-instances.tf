@@ -28,7 +28,7 @@ resource "aws_opsworks_instance" "api-instance" {
   instance_type = "m3.medium" 
   os            = "Amazon Linux 2018.03"
   state         = var.instances_state
-  ssh_key_name = var.ssh_key_name
+  ssh_key_name  = var.ssh_key_name
   timeouts {
     create = "20m"
     delete = "20m"
@@ -42,4 +42,4 @@ resource "aws_opsworks_rds_db_instance" "my_db_instance" {
   db_password         = var.db_password
 }
 
-//there should be layers for node backend and frontend
+##PS.: For the log working we should use cloudwatch_configuration {enabled = true, log_streams {file = "/var/log/app.log"} }

@@ -68,9 +68,10 @@ resource "aws_opsworks_stack" "main" {
   service_role_arn             =  aws_iam_role.opswork_service_role.arn
   default_instance_profile_arn = aws_iam_instance_profile.opswork_instance_profile.arn
   use_custom_cookbooks = true
+  default_ssh_key_name = var.ssh_key_name
   custom_cookbooks_source {
     type = "git"
-    url = "https://github.com/aws/opsworks-cookbooks/"
+    url = "https://github.com/persanBR/kitchen.git"
   }
 }
 
